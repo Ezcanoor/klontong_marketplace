@@ -1,12 +1,16 @@
-import { Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { UserRole } from './type';
 
+@Entity()
 export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
   name: string;
+
+  @Column()
+  password: string;
 
   @Column()
   email: string;
@@ -23,7 +27,7 @@ export class User {
   })
   role: UserRole;
 
-  constructor(item: Partial<User>) {
-    Object.assign(this, item);
+  constructor(user: Partial<User>) {
+    Object.assign(this, user);
   }
 }

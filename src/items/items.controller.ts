@@ -20,7 +20,7 @@ export class ItemsController {
     try {
       const items = await this.itemsService.create(createItemDto);
       return {
-        message: 'success get all item data',
+        message: 'success create all item data',
         data: items,
       };
     } catch (error) {
@@ -42,7 +42,7 @@ export class ItemsController {
   }
 
   @Get(':id')
-  async indOne(@Param('id') id: string) {
+  async findOne(@Param('id') id: string) {
     try {
       const item = await this.itemsService.findOne(+id);
       return {
