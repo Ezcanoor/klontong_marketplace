@@ -1,6 +1,6 @@
 services:
   the_klontongs:
-    image: mysql
+    image: brik_klt:latest
     env_file:
       - .env
     ports:
