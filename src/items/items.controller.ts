@@ -7,20 +7,26 @@ import {
   Param,
   Delete,
   Query,
+  UseInterceptors,
+  UploadedFile,
 } from '@nestjs/common';
 import { ItemsService } from './items.service';
 import { CreateItemDto } from './dto/create-item.dto';
 import { UpdateItemDto } from './dto/update-item.dto';
 import { Paginate } from 'src/shared/paginate.dto';
 import { SearchItemDTO } from './dto/search.dto';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { storage } from './middleware/file-upload.middleware';
 
 @Controller('items')
 export class ItemsController {
   constructor(private readonly itemsService: ItemsService) {}
 
   @Post()
-  async create(@Body() createItemDto: CreateItemDto) {
+  @UseInterceptors(FileInterceptor('image', { storage }))
+  async create(@Body() createItemDto: CreateItemDto, @UploadedFile() file) {
     try {
+      createItemDto.image = file.filename;
       const items = await this.itemsService.create(createItemDto);
       return {
         message: 'success create all item data',
