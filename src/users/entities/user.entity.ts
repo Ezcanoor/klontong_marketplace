@@ -1,5 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { UserRole } from './type';
+import { Transaction } from 'src/transactions/entities/transaction.entity';
 
 @Entity()
 export class User {
@@ -26,6 +27,9 @@ export class User {
     default: UserRole.CUST,
   })
   role: UserRole;
+
+  @OneToMany(() => Transaction, (photo) => photo.user)
+  transactions: Transaction[];
 
   constructor(user: Partial<User>) {
     Object.assign(this, user);

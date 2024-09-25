@@ -6,10 +6,13 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { ItemsService } from './items.service';
 import { CreateItemDto } from './dto/create-item.dto';
 import { UpdateItemDto } from './dto/update-item.dto';
+import { Paginate } from 'src/shared/paginate.dto';
+import { SearchItemDTO } from './dto/search.dto';
 
 @Controller('items')
 export class ItemsController {
@@ -29,11 +32,14 @@ export class ItemsController {
   }
 
   @Get()
-  async findAll() {
+  async findAll(@Query() { page, size }: Paginate) {
     try {
-      const items = await this.itemsService.findAll();
+      const items = await this.itemsService.findAll({ page, size });
       return {
         message: 'success',
+        page: page,
+        size: size,
+        totalData: items[1],
         data: items,
       };
     } catch (error) {
@@ -71,6 +77,19 @@ export class ItemsController {
   async remove(@Param('id') id: string) {
     try {
       return this.itemsService.remove(+id);
+    } catch (error) {
+      return error;
+    }
+  }
+
+  @Get('finds/byname')
+  async findByName(@Query() { name }: SearchItemDTO) {
+    try {
+      const items = await this.itemsService.searchByName(name);
+      return {
+        message: 'success get item by name',
+        data: items,
+      };
     } catch (error) {
       return error;
     }

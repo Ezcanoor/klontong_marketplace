@@ -4,6 +4,8 @@ import { UpdateItemDto } from './dto/update-item.dto';
 import { EntityManager, Repository } from 'typeorm';
 import { Item } from './entities/item.entity';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Paginate } from 'src/shared/paginate.dto';
+import { paginator } from 'src/utils/paginator';
 
 @Injectable()
 export class ItemsService {
@@ -18,8 +20,12 @@ export class ItemsService {
     return this.entityManager.save(item);
   }
 
-  async findAll() {
-    return this.itemsRepository.find();
+  async findAll({ page, size }: Paginate) {
+    const { offset, limit } = paginator(page, size);
+    return this.itemsRepository.findAndCount({
+      skip: offset,
+      take: limit,
+    });
   }
 
   async findOne(id: number) {
@@ -36,5 +42,12 @@ export class ItemsService {
 
   async remove(id: number) {
     return this.itemsRepository.delete({ id });
+  }
+
+  async searchByName(name: string) {
+    return this.entityManager
+      .createQueryBuilder(Item, 'item')
+      .where('item.name like :name', { name: `%${name}%` })
+      .getMany();
   }
 }
