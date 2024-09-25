@@ -1,0 +1,382 @@
+{
+	"info": {
+		"_postman_id": "60093022-2471-4d47-8ff0-4d5c5d850e12",
+		"name": "brik_marketplace",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17290651"
+	},
+	"item": [
+		{
+			"name": "items",
+			"item": [
+				{
+					"name": "get_all_items",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/items?page=1&size=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"items"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "size",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete_items",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/items/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"items",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_item_by_id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/items/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"items",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_items",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n  \"CategoryId\": 14,\n  \"categoryName\": \"Cemilan butaaa\",\n  \"sku\": \"MHZVTK\",\n  \"name\": \"buntut macan\",\n  \"description\": \"Ciki ciki yang super enak, hanya di toko klontong kami\",\n  \"weight\": 500,\n  \"width\": 5,\n  \"length\": 5,\n  \"height\": 5,\n  \"image\": \"https://cf.shopee.co.id/file/7cb930d1bd183a435f4fb3e5cc4a896b\",\n  \"price\": 30000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/items",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"items"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update_items",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"CategoryId\": 14,\n  \"categoryName\": \"Cemilan\",\n  \"sku\": \"MHZVTKasdasd\",\n  \"name\": \"Ciki ciki ih\",\n  \"description\": \"Ciki ciki yang super enak, hanya di toko klontong kami, sia weh dangdut\",\n  \"weight\": 2,\n  \"width\": 2,\n  \"length\": 2,\n  \"height\": 5,\n  \"image\": \"https://cf.shopee.co.id/file/7cb930d1bd183a435f4fb3e5cc4a896b\",\n  \"price\": 30000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/items/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"items",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search_item_by_name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/items/finds/byname?name=cik",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"items",
+								"finds",
+								"byname"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "cik"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_item_with_file",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "categoryId",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "categoryName",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "sku",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "lontong goreng petih",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "lontong kari enak dengan kuah kaldu ayam",
+									"type": "text"
+								},
+								{
+									"key": "weight",
+									"value": "12",
+									"type": "text"
+								},
+								{
+									"key": "width",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "length",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "height",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/Users/muzanisyukur/Downloads/IMG_1235.JPG"
+								},
+								{
+									"key": "price",
+									"value": "120000",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/items",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"items"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "get_user_list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"muzani\",\n    \"email\": \"smuzani11@gmail.com\",\n    \"role\": \"admin\",\n    \"password\": \"narnia\",\n    \"phoneNumber\": \"112345125123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "transactions",
+			"item": [
+				{
+					"name": "transactions_create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\": 2,\n    \"itemListId\": [1],\n    \"totalPrice\": 10000,\n    \"couponRebate\": 0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/transactions/checkout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"transactions",
+								"checkout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_all_transactions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/transactions?page=1&size=5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"transactions"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "size",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find_transaction_by_id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/transactions/14",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"transactions",
+								"14"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
